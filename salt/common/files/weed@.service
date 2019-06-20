@@ -1,0 +1,20 @@
+[Unit]
+Description=Weed (%i) instance daemon
+Wants=network-online.target
+After=syslog.target network.target network-online.target nss-lookup.target
+
+[Service]
+Type=simple
+
+EnvironmentFile=/etc/sysconfig/weed-%i
+
+ExecStart=/usr/local/sbin/weed %i $OPTS
+
+TimeoutStartSec=0
+LimitNOFILE=infinity
+LimitMEMLOCK=infinity
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

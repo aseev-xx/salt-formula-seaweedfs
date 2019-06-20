@@ -1,7 +1,8 @@
 ## Salt template for SeaweedFs
 
-### Как с ним работать:
-на каждую групппу хостов необходимо навесить нужную роль
+### How it works:
+
+Consist of:
 
  * seaweedfs.master
  * seaweedfs.volume
@@ -9,7 +10,7 @@
 
 
 ### Pillar
- В репозитории с пилларами создана общая директория seaweedfs/{cluster_1,cluster_2,..}
+ In pillar created base state seaweedfs/common/init.sls
  
 #### init.sls
   
@@ -27,11 +28,18 @@ seaweedfs:
         dc: "dc3"
         rack: "rack1"
 ```
-После того как пиллар создан его нужно навесить в top.sls для пилларов.
+
+In top.sls:
+
+```
+'^cluster_node_\d+\.g$':
+  - match: pcre
+  - seaweedfs.common
+```
 
 ### State
 
-В top.sls для стейтов добавляем для хостов нужные роли
+In top.sls add needed roles on group of hosts:
 
 ```
 '^cluster_node_\d+\.g$':
