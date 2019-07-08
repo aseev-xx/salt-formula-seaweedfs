@@ -29,6 +29,11 @@ seaweedfs:
       cluster_node_3:
         dc: "dc3"
         rack: "rack1"
+    master:
+      port: "9333"
+      mdir: "/dir/master"
+      defaultReplication: XXX
+      volumeSizeLimitMB: 10240
 ```
 
 In pillar top.sls:
