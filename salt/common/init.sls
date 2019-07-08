@@ -1,8 +1,10 @@
+{%- from "seaweedfs/map.jinja" import config with context %}
+
 weed-archive:
   archive.extracted:
     - name: /usr/local/sbin/
-    - source: https://github.com/chrislusf/seaweedfs/releases/download/1.35/linux_amd64_large_disk.tar.gz
-    - source_hash: md5=51ae8e0eaed7688a1432b1fc7654e734
+    - source: https://github.com/chrislusf/seaweedfs/releases/download/{{ config.version }}/linux_amd64_large_disk.tar.gz
+    - source_hash: md5={{ config.hash }}
     - keep: True
     - user: root
     - group: root

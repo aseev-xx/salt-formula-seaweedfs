@@ -1,0 +1,10 @@
+{%- load_yaml as base_defaults %}
+
+RedHat:
+  base:
+    version: "1.35"
+    hash: "51ae8e0eaed7688a1432b1fc7654e734"
+
+{%- endload %}
+
+{%- set config = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('seaweedfs:config')) %}
