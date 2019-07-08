@@ -12,3 +12,8 @@ seaweedfs:
       cluster_node_3:
         dc: "dc3"
         rack: "rack1"
+    master:
+      port: "9333"
+      mdir: "/mnt/master"
+      defaultReplication: 100
+      volumeSizeLimitMB: 10240
