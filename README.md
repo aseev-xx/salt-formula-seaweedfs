@@ -17,6 +17,8 @@ Consist of:
 ```
 seaweedfs:
   config:
+    version: "1.35"
+    hash: "51ae8e0eaed7688a1432b1fc7654e734"
     topology: 
       cluster_node_1:
         dc: "dc1"
@@ -29,7 +31,7 @@ seaweedfs:
         rack: "rack1"
 ```
 
-In top.sls:
+In pillar top.sls:
 
 ```
 '^cluster_node_\d+\.g$':
@@ -39,7 +41,7 @@ In top.sls:
 
 ### State
 
-In top.sls add needed roles on group of hosts:
+In salt top.sls add needed roles on group of hosts:
 
 ```
 '^cluster_node_\d+\.g$':
