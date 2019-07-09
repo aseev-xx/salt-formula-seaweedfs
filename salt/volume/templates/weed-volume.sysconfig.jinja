@@ -1,3 +1,3 @@
 {%- from 'seaweedfs/settings.sls' import weed with context -%}
 
-OPTS="{{ weed.volume_location | join(' ') }} {{ weed.volume_params | join(' ') }} -mserver={{ weed.cluster | join(',') }} -ip={{ weed.hostname }}"
+OPTS="{{ weed.s_volume_location }} {{ weed.s_volume_params }} -mserver={{ weed.cluster }} -ip={{ weed.hostname }}"
