@@ -15,5 +15,6 @@ seaweedfs:
     master:
       port: "9333"
       mdir: "/mnt/master"
-      defaultReplication: 100
-      volumeSizeLimitMB: 10240
+      volumeSizeLimitMB: "10240"
+      defaultReplication: "100"
+      pulseSeconds: "1"

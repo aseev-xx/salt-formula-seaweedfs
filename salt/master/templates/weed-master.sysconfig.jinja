@@ -1,10 +1,16 @@
 {%- from "seaweedfs/map.jinja" import config with context -%}
 {% set hostname = salt['grains.get']('fqdn') -%}
 
+{# prepare peers string #}
 {% set cluster = [] -%}
-
 {% for node in config.topology -%}
 {% do cluster.append( node + ":" + config.master.port ) -%}
 {% endfor -%}
 
-OPTS="-volumeSizeLimitMB={{ config.master.volumeSizeLimitMB }} -defaultReplication={{ config.master.defaultReplication }} -port={{ config.master.port }} -mdir={{ config.master.mdir }} -peers={{ cluster | join(',') }} -ip {{ hostname }}"
+{# prepare params string #}
+{% set l_params = [] -%}
+{% for name, value in config.master.items() -%}
+{% do l_params.append( "-" + name + "=" + value ) -%}
+{% endfor -%}
+
+OPTS="{{ l_params | join(' ') }} -peers={{ cluster | join(',') }} -ip={{ hostname }}"
