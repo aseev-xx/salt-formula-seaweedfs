@@ -1,23 +1,3 @@
-{%- from "seaweedfs/map.jinja" import config with context -%}
-{% set hostname = salt['grains.get']('fqdn') -%}
+{%- from 'seaweedfs/settings.sls' import weed with context -%}
 
-{# prepare topology params string #}
-{% set location = [] -%}
-{% set node_specific = salt['pillar.get']('seaweedfs:config:topology:'+ hostname) -%}
-{% for name, value in node_specific.items() -%}
-{% do location.append( "-" + name + "=" + value ) -%}
-{% endfor -%}
-
-{# prepare master string #}
-{% set cluster = [] -%}
-{% for node in config.topology -%}
-{% do cluster.append( node + ":" + config.master.port ) -%}
-{% endfor -%}
-
-{# prepare params string #}
-{% set l_params = [] -%}
-{% for name, value in config.volume.items() -%}
-{% do l_params.append( "-" + name + "=" + value ) -%}
-{% endfor -%}
-
-OPTS="{{ location | join(' ') }} {{ l_params | join(' ') }} -mserver={{ cluster | join(',') }} -ip={{ hostname }}"
+OPTS="{{ weed.volume_location | join(' ') }} {{ weed.volume_params | join(' ') }} -mserver={{ weed.cluster | join(',') }} -ip={{ weed.hostname }}"

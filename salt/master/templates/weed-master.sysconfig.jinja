@@ -1,16 +1,3 @@
-{%- from "seaweedfs/map.jinja" import config with context -%}
-{% set hostname = salt['grains.get']('fqdn') -%}
+{%- from 'seaweedfs/settings.sls' import weed with context -%}
 
-{# prepare peers string #}
-{% set cluster = [] -%}
-{% for node in config.topology -%}
-{% do cluster.append( node + ":" + config.master.port ) -%}
-{% endfor -%}
-
-{# prepare params string #}
-{% set l_params = [] -%}
-{% for name, value in config.master.items() -%}
-{% do l_params.append( "-" + name + "=" + value ) -%}
-{% endfor -%}
-
-OPTS="{{ l_params | join(' ') }} -peers={{ cluster | join(',') }} -ip={{ hostname }}"
+OPTS="{{ weed.master_params | join(' ') }} -peers={{ weed.cluster | join(',') }} -ip={{ weed.hostname }}"
