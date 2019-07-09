@@ -1,0 +1,15 @@
+{%- from "seaweedfs/map.jinja" import config with context -%}
+
+{# prepare master string #}
+{% set cluster = [] -%}
+{% for node in config.topology -%}
+{% do cluster.append( node + ":" + config.master.port ) -%}
+{% endfor -%}
+
+{# prepare params string #}
+{% set l_params = [] -%}
+{% for name, value in config.filer.items() -%}
+{% do l_params.append( "-" + name + "=" + value ) -%}
+{% endfor -%}
+
+OPTS="{{ l_params | join(' ') }} -master={{ cluster | join(',') }}"

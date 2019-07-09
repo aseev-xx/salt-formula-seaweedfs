@@ -1,24 +1,3 @@
-{% set app = 'master' %}
-
-include:
-  - seaweedfs.common
-
-{{ app }}-sysconfig:
-  file:
-    - managed
-    - name: /etc/sysconfig/weed-{{ app }}
-    - source: salt://{{ tpldir }}/templates/weed-{{ app }}.sysconfig.jinja
-    - template: jinja
-    - user: root
-    - group: root
-    - mode: 0644
-
-{{ app }}-service:
-  service:
-    - running
-    - name: weed@{{ app }}
-    - enable: True
-    - watch:
-      - file: {{ app }}-sysconfig
-    - require:
-      - file: {{ app }}-sysconfig
+{% from 'seaweedfs/common/lib.sls' import weed_instance_template with context %}
+{% set instance = 'master' %}
+{{ weed_instance_template(instance) }}

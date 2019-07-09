@@ -1,0 +1,14 @@
+[cassandra]
+# CREATE TABLE filemeta (
+#    directory varchar,
+#    name varchar,
+#    meta blob,
+#    PRIMARY KEY (directory, name)
+# ) WITH CLUSTERING ORDER BY (name ASC);
+enabled = true
+keyspace="seaweedfs"
+hosts=[
+	"cluster_node_1:9042",
+	"cluster_node_2:9042",
+	"cluster_node_3:9042",
+]
