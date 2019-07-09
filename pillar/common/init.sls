@@ -18,3 +18,7 @@ seaweedfs:
       volumeSizeLimitMB: "10240"
       defaultReplication: "100"
       pulseSeconds: "1"
+    volume:
+      # params
+    filer:
+      # params

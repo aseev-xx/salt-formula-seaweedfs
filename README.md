@@ -33,7 +33,12 @@ seaweedfs:
       port: "9333"
       mdir: "/dir/master"
       defaultReplication: XXX
-      volumeSizeLimitMB: 10240
+      volumeSizeLimitMB: XXXXX
+      ...
+    volume:
+      # params
+    filer:
+      # params
 ```
 
 In pillar top.sls:
