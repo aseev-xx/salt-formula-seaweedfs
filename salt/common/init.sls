@@ -6,6 +6,7 @@ weed-archive:
     - source: https://github.com/chrislusf/seaweedfs/releases/download/{{ config.version }}/linux_amd64_large_disk.tar.gz
     - source_hash: md5={{ config.hash }}
     - keep: True
+    - overwrite: True
     - user: root
     - group: root
     - options: z
