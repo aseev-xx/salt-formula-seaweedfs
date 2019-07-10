@@ -1,7 +1,7 @@
 seaweedfs:
   config:
-    version: "1.35"
-    hash: "51ae8e0eaed7688a1432b1fc7654e734"
+    version: "1.41"
+    hash: "b83d651ba1f9f220809095679559cbb9"
     topology:
       cluster_node_1:
         dataCenter: "dc1"
@@ -24,6 +24,8 @@ seaweedfs:
       volumeSizeLimitMB: "10240"
       defaultReplication: "100"
       pulseSeconds: "1"
+      metrics.address: "localhost:9091"
+      metrics.intervalSeconds: "60"
     volume:
       port: "8081"
       compactionMBps: "60"
