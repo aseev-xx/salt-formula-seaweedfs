@@ -23,7 +23,6 @@ seaweedfs:
       mdir: "/mnt/master"
       volumeSizeLimitMB: "10240"
       defaultReplication: "100"
-      pulseSeconds: "1"
       metrics.address: "localhost:9091"
       metrics.intervalSeconds: "60"
     volume:
