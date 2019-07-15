@@ -7,6 +7,7 @@ Consist of:
  * seaweedfs.master
  * seaweedfs.volume
  * seaweedfs.filer
+ * seaweedfs.s3
 
 
 ### Pillar
@@ -42,6 +43,8 @@ seaweedfs:
       # params
     filer:
       # params
+    s3:
+      # params
 ```
 
 In pillar top.sls:
@@ -62,6 +65,7 @@ In salt top.sls add needed roles on group of hosts:
   - seaweedfs.master
   - seaweedfs.volume
   - seaweedfs.filer
+  - seaweedfs.s3
 ```
 
 ### Metrics

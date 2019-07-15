@@ -31,3 +31,6 @@ seaweedfs:
     filer:
       port: "8888"
       defaultReplicaPlacement: "100"
+    s3:
+      port: "8333"
+      filer.dir.buckets: "/"

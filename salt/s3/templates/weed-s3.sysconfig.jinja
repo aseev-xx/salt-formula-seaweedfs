@@ -1,0 +1,3 @@
+{%- from 'seaweedfs/settings.sls' import weed with context -%}
+
+OPTS="{{ weed.s_s3_params }} -filer={{ weed.cluster_filer }}"

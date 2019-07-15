@@ -10,6 +10,9 @@
 
 {% set cluster = cluster_nodes | join(',') %}
 
+{# prepare filer string for s3 <ip><port> - only one host:prot acceptible #}
+{% set cluster_filer = hostname + ":" + config.filer.port %}
+
 {# prepare master params string #}
 {% set master_params = [] -%}
 {% for name, value in config.master.items() -%}
@@ -43,13 +46,23 @@
 
 {% set s_filer_params = filer_params | join(' ') %}
 
+{# prepare s3 params string #}
+{% set s3_params = [] -%}
+{% for name, value in config.s3.items() -%}
+{% do s3_params.append( "-" + name + "=" + value ) -%}
+{% endfor -%}
+
+{% set s_s3_params = s3_params | join(' ') %}
+
 {%- set weed = {} %}
 
 {%- do weed.update({
   'hostname': hostname,
   'cluster': cluster,
+  'cluster_filer': cluster_filer,
   's_master_params': s_master_params,
   's_volume_params': s_volume_params,
   's_volume_location': s_volume_location,
-  's_filer_params': s_filer_params
+  's_filer_params': s_filer_params,
+  's_s3_params': s_s3_params
   }) %}
