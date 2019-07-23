@@ -34,3 +34,5 @@ seaweedfs:
     s3:
       port: "8333"
       filer.dir.buckets: "/"
+    webdav:
+      port: "7333"

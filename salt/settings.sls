@@ -54,6 +54,14 @@
 
 {% set s_s3_params = s3_params | join(' ') %}
 
+{# prepare webdav params string #}
+{% set webdav_params = [] -%}
+{% for name, value in config.webdav.items() -%}
+{% do webdav_params.append( "-" + name + "=" + value ) -%}
+{% endfor -%}
+
+{% set s_webdav_params = webdav_params | join(' ') %}
+
 {%- set weed = {} %}
 
 {%- do weed.update({
@@ -64,5 +72,6 @@
   's_volume_params': s_volume_params,
   's_volume_location': s_volume_location,
   's_filer_params': s_filer_params,
-  's_s3_params': s_s3_params
+  's_s3_params': s_s3_params,
+  's_webdav_params': s_webdav_params
   }) %}
